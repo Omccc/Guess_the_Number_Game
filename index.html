@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- Meta tags for character set and viewport settings -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title of the page -->
   <title>Guess the Number Game</title>
+  <!-- Styling for the page -->
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -60,29 +64,45 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- Lottie animation player for visual appeal -->
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  <dotlottie-player src="https://lottie.host/48971f94-bd54-48e4-93c9-95af83da1576/L7M0e05ekK.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
 
-      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-
-    <dotlottie-player src="https://lottie.host/48971f94-bd54-48e4-93c9-95af83da1576/L7M0e05ekK.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  <!-- Heading and introductory paragraph -->
   <h1>Guess the Number Game</h1>
   <p>Guess the number between 0 and 100.</p>
+
+  <!-- Input field for user to enter a guess -->
   <input type="number" id="guess" placeholder="Enter a number">
+
+  <!-- Button to trigger the guessNumber function -->
   <button onclick="guessNumber()">Guess</button>
+
+  <!-- Paragraph to display success or error messages -->
   <p id="message"></p>
 
+  <!-- JavaScript script for dynamic functionality -->
   <script>
-    const secretNumber = Math.floor(Math.random() * 101); // Generates a random number between 0 and 100
+    // Generate a random secret number between 0 and 100
+    const secretNumber = Math.floor(Math.random() * 101);
+    // Initialize attempts counter
     let attempts = 0;
 
+    // Function to handle the user's guess
     function guessNumber() {
+      // Get the user's guess from the input field
       const guess = parseInt(document.getElementById("guess").value);
 
+      // Check if the input is a valid number
       if (isNaN(guess)) {
         showMessage("Enter a valid number.", "error");
       } else {
+        // Increment attempts counter
         attempts++;
 
+        // Compare the guess with the secret number
         if (guess === secretNumber) {
           showMessage(`Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts.`, "success");
         } else if (guess < secretNumber) {
@@ -93,6 +113,7 @@
       }
     }
 
+    // Function to display messages and apply styling
     function showMessage(text, type) {
       const messageElement = document.getElementById("message");
       messageElement.textContent = text;
@@ -100,4 +121,5 @@
     }
   </script>
 </body>
+
 </html>
